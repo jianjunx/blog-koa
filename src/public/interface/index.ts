@@ -4,3 +4,11 @@ export interface SignIn {
     userName: string;
     passwd: string;
 }
+// db_config
+export interface DbConfigIn {
+    user: string;
+    host: string;
+    database: string;
+    password: string;
+    port: number;
+}
