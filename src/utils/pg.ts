@@ -13,12 +13,17 @@ class Query {
         this._sql = _sql;
         return this;
     }
-    async param(params: ParamsIn) {
+    async param(params?: ParamsIn) {
         try {
-            if (params[0] == "id") {
-                params[0] = uuid();
+            let res = null;
+            if (params) {
+                if (params[0] == "id") {
+                    params[0] = uuid();
+                }
+                res = await this._pool.query(this._sql, params);
+            } else {
+                res = await this._pool.query(this._sql);
             }
-            const res = await this._pool.query(this._sql, params);
             return Promise.resolve({
                 data: res.rows,
                 len: res.rowCount
@@ -26,6 +31,27 @@ class Query {
         } catch (error) {
             return Promise.reject(0);
         }
+    }
+    transactions(text: any, param: any) {
+        return new Promise((resolve, reject) => {
+            (async () => {
+                const client = await this._pool.connect();
+                try {
+                    await client.query("BEGIN");
+                    for (let index = 0; index < text.length; index++) {
+                        await client.query(text[index], param[index]);
+                    }
+                    await client.query("COMMIT");
+                    resolve(1);
+                } catch (e) {
+                    await client.query("ROLLBACK");
+                    throw e;
+                    reject(0);
+                } finally {
+                    client.release();
+                }
+            })().catch(e => console.error(e.stack));
+        });
     }
 }
 

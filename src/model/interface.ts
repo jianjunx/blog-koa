@@ -40,3 +40,18 @@ export interface ModifyUserInfoIn {
     profile: string;
     [index: string]: any;
 }
+
+// add category params
+export interface AddCategoryIn {
+    name: string;
+    brief: string;
+    alias: string;
+}
+
+// modify category params
+export interface ModifyCategoryIn {
+    id: string;
+    name: string;
+    brief: string;
+    alias: string;
+}
