@@ -1,7 +1,7 @@
 import * as jwt from "jsonwebtoken";
 import * as fs from "fs";
 import * as path from 'path';
-import { SignIn } from "../public/interface/index";
+import { SignIn } from "../model/interface";
 
 const keyPath = path.resolve(__dirname,'../public/key')
 // 密钥
@@ -43,7 +43,7 @@ export const sign = (data: SignIn) => {
  * decoded
  * @param token decoded token
  */
-export const verify = (token: string):number|object =>  {
+export const verify = (token: string):number|any =>  {
     return new Promise((resolve: any, reject: any) => {
         jwt.verify(token, cert, (err: any, decoded: object):void => {
             if (err) {
