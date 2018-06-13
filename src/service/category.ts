@@ -21,7 +21,7 @@ export const $GetCategoryList = async () => {
 // delete category
 export const $DelCategory = async (id: string) => {
     // 执行事务，删除category的同事会删除对应article
-    return db.transactions(DEL_CAYEGORY(), [[id], [id]]);
+    return db.transactions(DEL_CAYEGORY(), [[id], [id], [id]]);
 };
 
 // modify category

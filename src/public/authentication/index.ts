@@ -8,7 +8,7 @@ export default async (ctx: any, next: any) => {
         _method === "GET" ||
         _url.includes("login") ||
         _url.includes("register");
-        // GET请求和登录注册不验证token
+    // GET请求和登录注册不验证token
     if (!flag) {
         // 获取ip 和token
         const { clientip, token } = ctx.header;
@@ -17,13 +17,11 @@ export default async (ctx: any, next: any) => {
         const res = await verify(token);
         if (res === 0) throw 2;
         // 验证登录ip和请求ip是否一致
-        if (res.clientip !== clientip) throw 2;
+        if (res.data.clientip !== clientip) throw 2;
         // 查询Redis记录 验证是否登出
-        redis.get(res.id, (err: Error, result: string) => {
-            if (err) throw 0;
-            console.log(1,result)
-            if (result !== token) throw 2;
-        });
+        const _token = await redis.get(res.data.id);
+        // console.log(_token);
+        if (_token !== token) throw 2;
     }
     await next();
 };

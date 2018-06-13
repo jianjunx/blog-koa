@@ -55,3 +55,19 @@ export interface ModifyCategoryIn {
     brief: string;
     alias: string;
 }
+// add Article params
+export interface AddArticleIn {
+    title: string;
+    content: string;
+    brief: string;
+    category_id: string;
+    author_id: string;
+}
+// modify article params
+export interface ModifyArticleIn {
+    id:string 
+    title: string;
+    content: string;
+    brief: string;
+    category_id: string;
+}

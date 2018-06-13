@@ -78,15 +78,15 @@ export const tokenLogin = async (ctx: any) => {
     const res = await verify(token);
     if (res === 0) throw 2;
     // 验证ip
-    if (res.clientip !== clientip) throw 2;
+    if (res.data.clientip !== clientip) throw 2;
     // 根据id查用户信息
-    const data = await $UserIdInfo(res.id);
+    const data = await $UserIdInfo(res.data.id);
     // 验证用户信息
     if (data.len === 0) throw 4;
     const _data = data.data[0];
-    if (_data.passwd !== res.passwd) throw 2;
+    if (_data.passwd !== res.data.passwd) throw 2;
     // 生成新的token
-    const newToken = await sign({ clientip, id: res.id, passwd: res.passwd });
+    const newToken = await sign({ clientip, id: res.data.id, passwd: res.data.passwd });
     // 将新的token存入Redis
     redis.set(_data.id, newToken);
     // 响应
@@ -104,7 +104,7 @@ export const tokenLogin = async (ctx: any) => {
 
 // 用户修改密码
 export const modifyPasswd = async (ctx: any) => {
-    const { id, oldpwd, newpwd } = ctx.body;
+    const { id, oldpwd, newpwd } = ctx.request.body;
     // 验证
     if (!id || !oldpwd || !newpwd) throw 1;
     // 根据id查询该用户信息
@@ -144,17 +144,18 @@ export const modifyUserInfo = async (ctx: any) => {
 };
 
 // 查询用户信息
-export const findUserInfo = async (ctx:any)=>{
-    const {id=undefined} = ctx.header;
-    if(!id) throw 1;
+export const findUserInfo = async (ctx: any) => {
+    const { id = undefined } = ctx.request.body;
+    if (!id) throw 1;
     // 通过id查询用户
     const res = await $UserIdInfo(id);
     const _res = res.data[0];
     delete _res.passwd; //删除掉密码
+    delete _res.id //删除id
     // 响应
     ctx.body = {
-        msg:'ok',
-        err:0,
-        data:_res
-    }
-}
+        msg: "ok",
+        err: 0,
+        data: _res
+    };
+};

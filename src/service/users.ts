@@ -43,5 +43,6 @@ export const $modifyUserInfo = async (params: ModifyUserInfoIn) => {
     // 返回为空则不用执行数据库
     if (!info) return Promise.resolve();
     const [sql, prm] = info; //结构
+    console.log(sql)
     return await db.sql(sql).param(prm);
 };
