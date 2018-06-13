@@ -15,7 +15,7 @@ export const addAtricle = async (ctx: any) => {
         if (!v) throw 1;
     });
     // 转码
-    content = encodeURIComponent(content);
+    content = encodeURI(content);
     // insert article to db
     await $AddArticle({ title, content, brief, category_id, author_id });
     // send
@@ -45,7 +45,7 @@ export const articleDetails = async (ctx: any) => {
     const res = await $GetDetails(id, user_id);
     const _res = res.data[0];
     // 解码
-    _res.content = decodeURIComponent(_res.content);
+    _res.content = decodeURI(_res.content);
     // update pv
     $PageView(id, _res.pv);
     // send
@@ -64,7 +64,7 @@ export const modifyArticle = async (ctx: any) => {
         if (!param[v]) throw 1;
     });
     // 转码
-    param.content = encodeURIComponent(param.content)
+    param.content = encodeURI(param.content)
     // modify db
     await $ModifyArticle(param);
     // send
