@@ -65,9 +65,17 @@ export interface AddArticleIn {
 }
 // modify article params
 export interface ModifyArticleIn {
-    id:string 
+    id: string;
     title: string;
     content: string;
     brief: string;
     category_id: string;
+}
+
+// add comment
+export interface AddCommentIn {
+    parent: string;
+    content: string;
+    author_id: string;
+    article_id: string;
 }

@@ -29,25 +29,24 @@ export const ADD_LIKES = (): string => {
 };
 
 // cancel likes
-export const DEL_LIKES = ():string=>{
-    return `DELETE FROM x_likes WHERE user_id = $1 AND article_id = $2`
-}
+export const DEL_LIKES = (): string => {
+    return `DELETE FROM x_likes WHERE user_id = $1 AND article_id = $2`;
+};
 
 // modify article
-export const UPDATE_ARTICLE = ():string=>{
-    return `UPDATE x_article SET title = $2,content = $3,brief = $4,category_id = $5 WHERE id = $1`
-}
+export const UPDATE_ARTICLE = (): string => {
+    return `UPDATE x_article SET title = $2,content = $3,brief = $4,category_id = $5 WHERE id = $1`;
+};
 
 // get article list
-export const GET_LIST = (article_id:string):string =>{
-    const w = article_id?`WHERE a.category_id = '${article_id}'`:'';
-    return `SELECT a.id,a.title,a.brief,a.create_time,a.pv,(SELECT count(*) FROM x_likes l WHERE l.article_id = a.id) AS likes,
+export const GET_LIST = (article_id: string): string => {
+    const w = article_id ? `WHERE a.category_id = '${article_id}'` : "";
+    return `SELECT a.id,a.title,a.brief,a.create_time,a.pv,(SELECT count(*) FROM x_likes l WHERE l.article_id = a.id) AS likes,(SELECT count(*) FROM x_comment cm WHERE cm.article_id = a.id) AS c_count
     FROM x_article a
     LEFT JOIN x_users u
     ON a.author_id = u.id
     LEFT JOIN x_category c
     ON a.category_id = c.id
     LEFT JOIN x_users u ${w}
-    LIMIT $1 OFFSET $2`
-}
-
+    LIMIT $1 OFFSET $2`;
+};

@@ -8,6 +8,7 @@ import {
     $ArticleList,
     $AddLikes
 } from "../service/article";
+import { $GetComment } from "../service/comment";
 // 添加文章
 export const addAtricle = async (ctx: any) => {
     let { title, content, brief, category_id, author_id } = ctx.request.body;
@@ -42,7 +43,10 @@ export const articleDetails = async (ctx: any) => {
     const { id, user_id } = ctx.query;
     if (!id) throw 1;
     // get article details
-    const res = await $GetDetails(id, user_id);
+    const [res, comment] = await Promise.all([
+        $GetDetails(id, user_id),
+        $GetComment(id)
+    ]);
     const _res = res.data[0];
     // 解码
     _res.content = decodeURI(_res.content);
@@ -52,7 +56,10 @@ export const articleDetails = async (ctx: any) => {
     ctx.body = {
         msg: "ok",
         err: 0,
-        data: _res
+        data: {
+            detail: _res,
+            comment: comment.data
+        }
     };
 };
 
@@ -64,7 +71,7 @@ export const modifyArticle = async (ctx: any) => {
         if (!param[v]) throw 1;
     });
     // 转码
-    param.content = encodeURI(param.content)
+    param.content = encodeURI(param.content);
     // modify db
     await $ModifyArticle(param);
     // send
