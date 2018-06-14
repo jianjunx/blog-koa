@@ -9,7 +9,7 @@
 | data  | {...}\|[...]              | 请求返回的主数据                                             |
 | token | :string                   | 用户鉴权，登录成功后会返回token，后面每次请求中需要在header中带上 |
 
-```json
+```javascript
 //示例
 {
     msg:"ok",
@@ -50,7 +50,7 @@
 
 - 注册账号
 
-  ````Json
+  ````javascript
   REQ:
   token:no
   {
@@ -75,7 +75,7 @@
 
 - 登录
 
-  ````Json
+  ````javascript
   REQ:
   token:no
   {
@@ -99,7 +99,7 @@
 
 - 退出登录
 
-  ````Json
+  ````javascript
   REQ
   token:yes
   {
@@ -114,7 +114,7 @@
 
 - Token登录
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
@@ -135,7 +135,7 @@
 
 - 修改个人资料
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
@@ -154,7 +154,7 @@
 
 - 请求个人资料
 
-  ```json
+  ```javascript
   REQ:
   token:yes
   {
@@ -179,7 +179,7 @@
 
 - 邮箱发送验证码
 
-  ```json
+  ```javascript
   REQ:
   token:yes
   {
@@ -195,7 +195,7 @@
 
 - 修改密码
 
-  ```Json
+  ```javascript
   REQ:
   token:no
   {
@@ -223,7 +223,7 @@
 
 - 获取分类列表
 
-  ```Json
+  ```javascript
   REQ:
   token:no
   {
@@ -244,7 +244,7 @@
 
 - 添加分类
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
@@ -261,7 +261,7 @@
 
 - 修改分类
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
@@ -279,7 +279,7 @@
 
 - 删除分类
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
@@ -308,7 +308,7 @@
 
 - 添加文章
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
@@ -327,7 +327,7 @@
 
 -  修改文章
 
-   ```Json
+   ```javascript
    REQ:
    token:yes
    {
@@ -348,7 +348,7 @@
 
 -  获取文章详情
 
-   ```Json
+   ```javascript
    REQ:
    token:no
    {
@@ -385,7 +385,7 @@
 
 -  获取文章列表
 
-   ```Json
+   ```javascript
    REQ:
    token:no
    {
@@ -416,7 +416,7 @@
 
 -  删除文章
 
-   ```Json
+   ```javascript
    REQ:
    token:yes
    {
@@ -432,7 +432,7 @@
 
 -  点赞一个文章
 
-   ```Json
+   ```javascript
    REQ:
    token:yes
    {
@@ -449,7 +449,7 @@
 
 -  取消文章的赞
 
-   ```Json
+   ```javascript
    REQ:
    token:yes
    {
@@ -474,7 +474,7 @@
 
 - 添加评论
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
@@ -492,7 +492,7 @@
 
 - 删除评论
 
-  ```Json
+  ```javascript
   REQ:
   token:yes
   {
