@@ -5,7 +5,8 @@ import {
     exitLogin,
     modifyPasswd,
     modifyUserInfo,
-    findUserInfo
+    findUserInfo,
+    sendMail
 } from "../../controller/users";
 
 export default (Router: any) => {
@@ -23,5 +24,7 @@ export default (Router: any) => {
         // 使用token登录
         .get("/user", tokenLogin)
         // 退出登录
-        .post("/user/exit", exitLogin);
+        .post("/user/exit", exitLogin)
+        // 邮箱验证
+        .get("/user/mail",sendMail);
 };

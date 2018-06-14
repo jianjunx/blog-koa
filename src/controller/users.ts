@@ -8,6 +8,7 @@ import {
 import { sign, verify } from "../utils/Jwt";
 import * as uuid from "uuid/v4";
 import redis from "../utils/redis";
+import mailer from "../utils/mailer";
 
 // 用户登录
 export const userLogin = async (ctx: any) => {
@@ -86,7 +87,11 @@ export const tokenLogin = async (ctx: any) => {
     const _data = data.data[0];
     if (_data.passwd !== res.data.passwd) throw 2;
     // 生成新的token
-    const newToken = await sign({ clientip, id: res.data.id, passwd: res.data.passwd });
+    const newToken = await sign({
+        clientip,
+        id: res.data.id,
+        passwd: res.data.passwd
+    });
     // 将新的token存入Redis
     redis.set(_data.id, newToken);
     // 响应
@@ -151,11 +156,30 @@ export const findUserInfo = async (ctx: any) => {
     const res = await $UserIdInfo(id);
     const _res = res.data[0];
     delete _res.passwd; //删除掉密码
-    delete _res.id //删除id
+    delete _res.id; //删除id
     // 响应
     ctx.body = {
         msg: "ok",
         err: 0,
         data: _res
+    };
+};
+// 
+// send email
+export const sendMail = async (ctx: any) => {
+    const { to } = ctx.query;
+    if (!to) throw 1;
+    const code = Math.floor(Math.random() * 1000000);
+    // send email
+    await mailer({
+        to,
+        text: `您的验证码是 ${code}`,
+        html: `<p>您的验证码是 ${code}</p>`,
+        subject: `【JEF.SITE】验证码`
+    });
+    ctx.body = {
+        msg: "ok",
+        err: 0,
+        code
     };
 };

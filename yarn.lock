@@ -129,6 +129,13 @@
   version "10.3.2"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-10.3.2.tgz#3840ec6c12556fdda6e0e6d036df853101d732a4"
 
+"@types/nodemailer@^4.6.0":
+  version "4.6.0"
+  resolved "http://registry.npm.taobao.org/@types/nodemailer/download/@types/nodemailer-4.6.0.tgz#542ecb5fff91cd3d841fc67cace0527649030462"
+  dependencies:
+    "@types/events" "*"
+    "@types/node" "*"
+
 "@types/pg-types@*":
   version "1.11.4"
   resolved "http://registry.npm.taobao.org/@types/pg-types/download/@types/pg-types-1.11.4.tgz#8d7c59fb509ce3dca3f8bae589252051c639a9a8"
@@ -2140,6 +2147,10 @@ nodemailer@^2.5.0:
     nodemailer-smtp-pool "2.8.2"
     nodemailer-smtp-transport "2.7.2"
     socks "1.1.9"
+
+nodemailer@^4.6.6:
+  version "4.6.6"
+  resolved "http://registry.npm.taobao.org/nodemailer/download/nodemailer-4.6.6.tgz#9ba4be51ffa5da2b2dbc392b87e30bff7166e139"
 
 nodemon@^1.17.5:
   version "1.17.5"
