@@ -11,7 +11,10 @@ export const DEL_ARTICLE = (): string => {
 
 // get article details
 export const GET_DETAILS = (): string => {
-    return `SELECT a.title,a."content",a.brief,a."create_time",u."name" AS author,a."author_id",(SELECT COUNT(*) FROM x_likes l WHERE l."article_id" = a.id) AS likes,a.pv,(SELECT COUNT(*) FROM x_likes l2 WHERE l2."user_id" = $2) AS islikes
+    return `SELECT a.title,a."content",a.brief,
+    a."create_time",u."name" AS author,a."author_id",
+    (SELECT COUNT(*) FROM x_likes l WHERE l."article_id" = a.id) AS likes,
+    a.pv,(SELECT COUNT(*) FROM x_likes l2 WHERE l2."user_id" = $2) AS islikes
     FROM x_article a 
     LEFT JOIN x_users u
     ON a."author_id" = u."id"
@@ -41,12 +44,14 @@ export const UPDATE_ARTICLE = (): string => {
 // get article list
 export const GET_LIST = (article_id: string): string => {
     const w = article_id ? `WHERE a.category_id = '${article_id}'` : "";
-    return `SELECT a.id,a.title,a.brief,a.create_time,a.pv,(SELECT count(*) FROM x_likes l WHERE l.article_id = a.id) AS likes,(SELECT count(*) FROM x_comment cm WHERE cm.article_id = a.id) AS c_count
+    return `SELECT a.id,a.title,a.brief,a.create_time,a.pv,
+    (SELECT count(*) FROM x_likes l WHERE l.article_id = a.id) AS likes,
+    (SELECT count(*) FROM x_comment cm WHERE cm.article_id = a.id) AS c_count,
+    u.name AS author,c.name AS category
     FROM x_article a
     LEFT JOIN x_users u
     ON a.author_id = u.id
     LEFT JOIN x_category c
-    ON a.category_id = c.id
-    LEFT JOIN x_users u ${w}
+    ON a.category_id = c.id ${w}
     LIMIT $1 OFFSET $2`;
 };

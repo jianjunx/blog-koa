@@ -14,7 +14,7 @@ export const USER_ID_INFO = (): string =>
 
 // 修改用户密码
 export const UPDATE_PASSWD = (): string =>
-    `UPDATE x_users SET passwd = $2 WHERE id = $1`;
+    `UPDATE x_users SET passwd = $2 WHERE user = $1`;
 
 // 修改用户信息
 

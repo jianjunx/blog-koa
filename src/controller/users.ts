@@ -180,6 +180,6 @@ export const sendMail = async (ctx: any) => {
     ctx.body = {
         msg: "ok",
         err: 0,
-        code
+        data:code
     };
 };
