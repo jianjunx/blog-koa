@@ -1,7 +1,9 @@
 # KOA2-TS-PG-BLOG
 
 使用koa2 ➕ typescript ➕ postgresql,redies,mongodb 开发的博客服务器后台
-旧版》》 [koa2-pg-blog](https://github.com/Jeffyx/blog-server)
+旧版👉 [koa2-pg-blog](https://github.com/Jeffyx/blog-server)
+
+[API 文档⤴️](https://github.com/Jeffyx/blog-server_v2/blob/master/src/router/README.md)
 
 # 运行环境
 
@@ -11,6 +13,8 @@ NodeJS v8.0+
 npm & cnpm & yarn
 typescript
 Postgresql 9.5+
+mongodb
+redis
 Pm2 //生产环境守护进程
 Nginx & Apache //生产环境代理请求
 */
@@ -56,4 +60,24 @@ npm run dev //启动项目 热更新
 ```
 # 目录结构
 
-有时间再完善
+```javascript
+  /*
+  config
+  --dbConfig.ts  //数据连接配置
+  --logConfig  //log记录配置
+  contoroller //代码逻辑在这里
+  --article.ts //.....
+  logs //log目录
+  --error
+  --response
+  router //路由目录
+  --index.ts
+  --v1 //api版本
+  sentence //分离sql语句目录
+  --article.ts //....
+  utils  //功能函数方法目录
+  app.ts  //入口文件
+*/
+```
+
+有时间再完善！

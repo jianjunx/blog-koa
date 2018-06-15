@@ -39,7 +39,7 @@ export const $GetDetails = (id: string, user_id: string) => {
 
 // update page view
 export const $PageView = (id: string, pv: number) => {
-    return db.sql(PAGE_VIEW()).param([id, pv++]);
+    return db.sql(PAGE_VIEW()).param([id, ++pv]);
 };
 
 // cancel likes
@@ -63,10 +63,14 @@ export const $ModifyArticle = (params: ModifyArticleIn) => {
 // get article list
 export const $ArticleList = (
     article_id: string,
-    total: number,
-    page: number
+    page: number,
+    total: number
 ) => {
-    return db.sql(GET_LIST(article_id)).param([total, total * (page - 1)]);
+    const [l, t] = GET_LIST(article_id);
+    return Promise.all([
+        db.sql(l).param([total, total * (page - 1)]),
+        db.sql(t).param()
+    ]);
 };
 
 // add likes

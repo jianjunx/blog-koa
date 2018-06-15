@@ -24,5 +24,5 @@ export const $DelComment = (id: string) => {
 
 // get comment
 export const $GetComment = (article_id:string)=>{
-    return db.sql(GET_COMMENT()).param(article_id)
+    return db.sql(GET_COMMENT()).param([article_id])
 }

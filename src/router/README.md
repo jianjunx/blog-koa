@@ -37,43 +37,43 @@
 
 ### 用户 Users API
 
-| 接口           | 类型 | 地址           |
-| -------------- | ---- | -------------- |
-| 注册账号       | POST | /user/register |
-| 登录           | POST | /user/login    |
-| 退出登录       | POST | /user/exit     |
-| token登录      | GET  | / user         |
-| 修改个人资料   | PUT  | /user          |
-| 请求个人资料   | POST | /user          |
-| 邮箱发送验证码 | GET  | /user/mail     |
-| 修改密码       | POST | /user/passwd   |
+| 接口                       | 类型 | 地址           |
+| -------------------------- | ---- | -------------- |
+| [注册账号](##### 注册账号) | POST | /user/register |
+| [登录](##### 登录)                       | POST | /user/login    |
+| [退出登录](##### 退出登录) | POST | /user/exit     |
+| [token登录](##### Token登录)                  | GET  | / user         |
+| [修改个人资料](##### 修改个人资料)               | PUT  | /user          |
+| [请求个人资料](##### 请求个人资料)               | POST | /user          |
+| [邮箱发送验证码](##### 邮箱发送验证码)             | GET  | /user/mail     |
+| [修改密码](##### 修改密码)                   | POST | /user/passwd   |
 
-- 注册账号
+##### 注册账号
 
-  ````javascript
-  REQ:
-  token:no
-  {
-      name:"jeff", //用户名
-      email:"admin@jef.site", //邮箱
-      passwd:"123456" //密码
-  }
-  RES:
-  {
-      msg:'ok',
-      err:0,
-      token:"(token)",//登录token
-      data:{
-          id:"(uuid)", //user id 用户id
-          name:"jeff",
-          email:"admin@jef.site"
-      }
-  }
-  ````
+````javascript
+REQ:
+token:no
+{
+    name:"jeff", //用户名
+    email:"admin@jef.site", //邮箱
+    passwd:"123456" //密码
+}
+RES:
+{
+    msg:'ok',
+    err:0,
+    token:"(token)",//登录token
+    data:{
+        id:"(uuid)", //user id 用户id
+        name:"jeff",
+        email:"admin@jef.site"
+    }
+}
+````
 
-  ​
+​
 
-- 登录
+##### 登录
 
   ````javascript
   REQ:
@@ -97,7 +97,7 @@
   }
   ````
 
-- 退出登录
+##### 退出登录
 
   ````javascript
   REQ
@@ -112,7 +112,7 @@
   }
   ````
 
-- Token登录
+##### Token登录
 
   ```javascript
   REQ:
@@ -133,7 +133,7 @@
   }
   ```
 
-- 修改个人资料
+##### 修改个人资料
 
   ```javascript
   REQ:
@@ -152,7 +152,7 @@
   }
   ```
 
-- 请求个人资料
+##### 请求个人资料
 
   ```javascript
   REQ:
@@ -177,7 +177,7 @@
   }
   ```
 
-- 邮箱发送验证码
+##### 邮箱发送验证码
 
   ```javascript
   REQ:
@@ -193,7 +193,7 @@
   }
   ```
 
-- 修改密码
+##### 修改密码
 
   ```javascript
   REQ:
@@ -216,12 +216,12 @@
 
 | 接口         | 类型   | 地址      |
 | ------------ | ------ | --------- |
-| 获取分类列表 | GET    | /category |
-| 添加分类     | POST   | /category |
-| 修改分类     | PUT    | /category |
-| 删除分类     | DELETE | /category |
+| [获取分类列表](##### 获取分类列表) | GET    | /category |
+| [添加分类](##### 添加分类)     | POST   | /category |
+| [修改分类](##### 修改分类)     | PUT    | /category |
+| [删除分类](##### 删除分类)     | DELETE | /category |
 
-- 获取分类列表
+##### 获取分类列表
 
   ```javascript
   REQ:
@@ -242,7 +242,7 @@
   }
   ```
 
-- 添加分类
+##### 添加分类
 
   ```javascript
   REQ:
@@ -259,7 +259,7 @@
   }
   ```
 
-- 修改分类
+##### 修改分类
 
   ```javascript
   REQ:
@@ -277,7 +277,7 @@
   }
   ```
 
-- 删除分类
+##### 删除分类
 
   ```javascript
   REQ:
@@ -298,15 +298,15 @@
 
 | 接口         | 类型   | 地址          |
 | ------------ | ------ | ------------- |
-| 获取文章列表 | GET    | /article/list |
-| 获取文章详情 | GET    | /article      |
-| 添加文章     | POST   | /article      |
-| 修改文章     | PUT    | /article      |
-| 删除文章     | DELETE | /article      |
-| 点赞一个文章 | POST   | /likes        |
-| 取消文章的赞 | DELETE | /likes        |
+| [获取文章列表](##### 获取文章列表) | GET    | /article/list |
+| [获取文章详情](##### 获取文章详情) | GET    | /article      |
+| [添加文章](##### 添加文章)     | POST   | /article      |
+| [修改文章](##### 修改文章)     | PUT    | /article      |
+| [删除文章](##### 删除文章)     | DELETE | /article      |
+| [点赞一个文章](##### 点赞一个文章) | POST   | /likes        |
+| [取消文章的赞](##### 取消文章的赞) | DELETE | /likes        |
 
-- 添加文章
+##### 添加文章
 
   ```javascript
   REQ:
@@ -325,7 +325,7 @@
   }
   ```
 
--  修改文章
+#####  修改文章
 
    ```javascript
    REQ:
@@ -346,13 +346,14 @@
 
    ​
 
--  获取文章详情
+#####  获取文章详情
 
    ```javascript
    REQ:
    token:no
    {
-       id:'category id' //文章的id
+       id:'category id', //文章的id
+       [user_id]:'userid' //用户id 用于判断是否点赞过该文章 如果用户已登录则需要传 未登录则忽略该参数
    }
    RES:
    {
@@ -383,7 +384,7 @@
    }
    ```
 
--  获取文章列表
+#####  获取文章列表
 
    ```javascript
    REQ:
@@ -414,7 +415,7 @@
    }
    ```
 
--  删除文章
+#####  删除文章
 
    ```javascript
    REQ:
@@ -430,7 +431,7 @@
 
    ```
 
--  点赞一个文章
+#####  点赞一个文章
 
    ```javascript
    REQ:
@@ -447,7 +448,7 @@
    }
    ```
 
--  取消文章的赞
+#####  取消文章的赞
 
    ```javascript
    REQ:
@@ -469,10 +470,10 @@
 
 | 接口     | 类型   | 地址      |
 | -------- | ------ | --------- |
-| 添加评论 | POST   | / comment |
-| 删除评论 | DELETE | / comment |
+| [添加评论](##### 添加评论) | POST   | / comment |
+| [删除评论](##### 删除评论) | DELETE | / comment |
 
-- 添加评论
+##### 添加评论
 
   ```javascript
   REQ:
@@ -490,7 +491,7 @@
   }
   ```
 
-- 删除评论
+##### 删除评论
 
   ```javascript
   REQ:

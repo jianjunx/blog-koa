@@ -40,13 +40,15 @@ export const delArticle = async (ctx: any) => {
 };
 // 获取文章详情
 export const articleDetails = async (ctx: any) => {
-    const { id, user_id } = ctx.query;
+    const { id, user_id = "" } = ctx.query;
     if (!id) throw 1;
     // get article details
     const [res, comment] = await Promise.all([
         $GetDetails(id, user_id),
         $GetComment(id)
     ]);
+    // const res = await $GetDetails(id, user_id);
+    // const comment = await $GetComment(id);
     const _res = res.data[0];
     // 解码
     _res.content = decodeURI(_res.content);
@@ -83,14 +85,15 @@ export const modifyArticle = async (ctx: any) => {
 
 // get article list
 export const getArticleList = async (ctx: any) => {
-    const { categoty_id, page = 1, total = 10 } = ctx.query;
+    const { categoty_id = 0, page = 1, total = 10 } = ctx.query;
     // get article list to db
-    const res = await $ArticleList(categoty_id, page, total);
+    const [l, t] = await $ArticleList(categoty_id, page, total);
     // send
     ctx.body = {
         msg: "ok",
         err: 0,
-        data: res.data
+        total: t.data[0].count,
+        data: l.data
     };
 };
 
