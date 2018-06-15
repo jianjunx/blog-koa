@@ -106,7 +106,7 @@ export const tokenLogin = async (ctx: any) => {
         }
     };
 };
-
+//
 // 用户修改密码
 export const modifyPasswd = async (ctx: any) => {
     const { id, oldpwd, newpwd } = ctx.request.body;
@@ -174,7 +174,7 @@ export const sendMail = async (ctx: any) => {
     await mailer({
         to,
         text: `您的验证码是 ${code}`,
-        html: `<p>您的验证码是 ${code}</p>`,
+        html: `<p>jef.site 提醒您正在进行邮箱验证操作，您的验证码是 ${code}，如非本人请忽略此邮件！</p>`,
         subject: `【JEF.SITE】验证码`
     });
     ctx.body = {

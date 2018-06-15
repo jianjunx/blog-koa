@@ -10,6 +10,7 @@ app.use(cors()); //解决跨域
 
 router(app); //路由
 
-app.listen(3000, () => {
-    console.log("Server start OK! to http://127.0.0.1:3000/");
+app.listen(3002, () => {
+    console.log("Server start OK! to http://127.0.0.1:3002/");
 });
+// 

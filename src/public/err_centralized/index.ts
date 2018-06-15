@@ -10,10 +10,10 @@ export default async (ctx: any, next: any) => {
         // 保存响应日志
         resLog(ctx);
         // 保存响应日志到mongodb
-        res_log.insert({
-            time: format("yyyy-MM-dd hh:mm:ss"),
-            Context: logInfo(ctx)
-        });
+        // res_log.insert({
+        //     time: format("yyyy-MM-dd hh:mm:ss"),
+        //     Context: logInfo(ctx)
+        // });
     } catch (error) {
         if (typeof error != "number") {
             error = 0;
@@ -26,11 +26,11 @@ export default async (ctx: any, next: any) => {
         // 保存错误日志
         errLog(error, ctx);
         // 保存错误日志到mongodb
-        err_log.insert({
-            Time: format("yyyy-MM-dd hh:mm:ss"),
-            Err: ErrMessage(error),
-            Context: logInfo(ctx)
-        });
+        // err_log.insert({
+        //     Time: format("yyyy-MM-dd hh:mm:ss"),
+        //     Err: ErrMessage(error),
+        //     Context: logInfo(ctx)
+        // });
     }
 };
 // 选择要存储的内容

@@ -2,13 +2,13 @@ import * as nodemailer from "nodemailer";
 
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
-    service: '"qiye.aliyun"',
-    host: "smtp.ethereal.email",
-    port: 25,
-    secure: false, // true for 465, false for other ports
+    // service: 'QQ',
+    host: "smtp.exmail.qq.com",
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
-        user: "admin@jeffy.cc", // generated ethereal user
-        pass: "Jsung12369" // generated ethereal password
+        user: "admin@jef.site", // generated ethereal user
+        pass: "bkEQiCcBS2LwQodM" // generated ethereal password
     }
 });
 
@@ -23,7 +23,7 @@ export default (opt: SendMailIn) => {
     return new Promise((resolve, reject) => {
         // setup email data with unicode symbols
         const mailOptions = {
-            from: `"Jef.Site" <admin@jeffy.cc>`, // sender address
+            from: `"Jeff" <admin@jef.site>`, // sender address
             to: opt.to, // list of receivers
             subject: opt.subject, // Subject line
             text: opt.text, // plain text body
