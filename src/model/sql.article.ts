@@ -25,7 +25,7 @@ export const PAGE_VIEW = (): string => {
 
 // likes
 export const ADD_LIKES = (): string => {
-    return `INSERT INTO x_likes (article_id,user_id,category_id) VALUES($1,$2,$3)`;
+    return `INSERT INTO x_likes (id,article_id,user_id,category_id) VALUES($1,$2,$3,$4)`;
 };
 
 // cancel likes

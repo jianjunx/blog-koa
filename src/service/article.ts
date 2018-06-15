@@ -79,5 +79,5 @@ export const $AddLikes = (
     user_id: string,
     category_id: string
 ) => {
-    return db.sql(ADD_LIKES()).param([article_id, user_id, category_id]);
+    return db.sql(ADD_LIKES()).param(["id", article_id, user_id, category_id]);
 };
